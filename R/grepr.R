@@ -69,13 +69,3 @@ grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE,
   attr(res, "dir") <- dir
   res
 }
-
-#' @export
-print.grepr <- function(x, ...) {
-  if (nrow(x) > 0) {
-    x$type <- "info"
-    rstudioapi::sourceMarkers(name = "grepr", x, basePath = attr(x, "dir"))
-  }
-  else
-    message("no matches to show")
-}
