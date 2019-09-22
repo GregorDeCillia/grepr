@@ -21,3 +21,16 @@ drop_roxygen_matches <- function(matches) {
   attr(matches, "dir") <- dir
   matches
 }
+
+#' @rdname grep_umlauts
+#' @export
+print_substitution_table <- function() {
+  umlauts = c("\u00c4", "\u00e4", "\u00d6", "\u00f6", "\u00dc", "\u00fc",
+               "\u00df")
+  substitutions = c("\\u00c4", "\\u00e4", "\\u00d6", "\\u00f6", "\\u00dc",
+                    "\\u00fc", "\\u00df")
+  message("the following substitutions should be used if R CMD check ",
+          "adds NOTEs because of umlauts\n")
+  for (i in seq_along(umlauts))
+    message(umlauts[i], ": ", substitutions[i], "\t")
+}

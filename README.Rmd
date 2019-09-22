@@ -49,3 +49,22 @@ Argument           | Description
 **dir**            | a directory from which the search is conducted. Defaults to the working directory.
 **ignore_dotfiles**| should hidden files be searched as well? Defaults to `FALSE`
 **file_pattern**   | a regular expression which can be used to exclude certain files from the search
+
+## Umlauts
+
+`grep_umlauts` is a wrapper around `grepr` which looks for umlauts via the 
+`pattern` argument. It can be used with a flag `ignore_roxygen` to skip Rd
+Files and roxygen comments.
+
+Supported symbols: ÖÄÜöäü
+
+```{r}
+grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
+```
+
+The function `print_substitution_table()` can be used to suggest alternatives
+
+```{r}
+print_substitution_table()
+```
+

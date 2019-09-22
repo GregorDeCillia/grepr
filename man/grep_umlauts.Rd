@@ -2,9 +2,12 @@
 % Please edit documentation in R/grep_umlauts.R
 \name{grep_umlauts}
 \alias{grep_umlauts}
+\alias{print_substitution_table}
 \title{Mark all umlauts}
 \usage{
 grep_umlauts(pattern = specials, ..., ignore_roxygen = FALSE)
+
+print_substitution_table()
 }
 \arguments{
 \item{pattern}{a character string containing a regular expression}
