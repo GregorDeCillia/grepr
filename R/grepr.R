@@ -9,11 +9,20 @@ list_file_contents <- function(dir, ignore_dotfiles, file_pattern) {
 find_matches <- function(pattern, dir, ignore_dotfiles, file_pattern) {
   res <- list_file_contents(dir, ignore_dotfiles, file_pattern) %>%
     lapply(function(file_contents) {
-      matches <- regexpr(pattern, file_contents)
-      data.frame(
-        row = which(matches != -1),
-        column = matches[matches != -1]
-      )
+      matches <- gregexpr(pattern, file_contents)
+      res <- lapply(seq_along(matches), function(i) {
+        row_matches <- matches[[i]]
+        if (any(row_matches == -1))
+          return(NULL)
+        n <- length(matches[[i]])
+        match_length <- attr(matches[[i]], "match.length")
+        data.frame(
+          row = rep(i, n),
+          column = matches[[i]],
+          length = match_length
+        )
+      })
+      do.call(rbind, res)
     })
   names(res) <- dir(recursive = TRUE, path = dir, all.files = !ignore_dotfiles,
                     pattern = file_pattern)
@@ -44,6 +53,7 @@ grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE,
         file = file,
         line = line,
         column = match$column[i],
+        length = match$length[i],
         message = readLines(file)[line],
         stringsAsFactors = FALSE
       )
