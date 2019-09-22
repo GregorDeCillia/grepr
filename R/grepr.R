@@ -1,13 +1,13 @@
 globalVariables(".")
 
-list_file_contents <- function(dir, ignore_dotfiles) {
+list_file_contents <- function(dir, ignore_dotfiles, file_pattern) {
   dir(path = dir, recursive = TRUE, full.names = TRUE,
-      all.files = !ignore_dotfiles) %>%
+      all.files = !ignore_dotfiles, pattern = file_pattern) %>%
     lapply(readLines)
 }
 
-find_matches <- function(pattern, dir, ignore_dotfiles) {
-  res <- list_file_contents(dir, ignore_dotfiles) %>%
+find_matches <- function(pattern, dir, ignore_dotfiles, file_pattern) {
+  res <- list_file_contents(dir, ignore_dotfiles, file_pattern) %>%
     lapply(function(file_contents) {
       matches <- regexpr(pattern, file_contents)
       data.frame(
@@ -15,7 +15,8 @@ find_matches <- function(pattern, dir, ignore_dotfiles) {
         column = matches[matches != -1]
       )
     })
-  names(res) <- dir(recursive = TRUE, path = dir, all.files = !ignore_dotfiles)
+  names(res) <- dir(recursive = TRUE, path = dir, all.files = !ignore_dotfiles,
+                    pattern = file_pattern)
   res
 }
 
@@ -25,9 +26,13 @@ find_matches <- function(pattern, dir, ignore_dotfiles) {
 #'   the working directory.
 #' @param ignore_dotfiles should hidden files be searched as well? Defaults
 #'   to `FALSE`
+#' @param file_pattern a regular expression that can be used to exclude certain
+#'   files from the search. Passed as the `pattern` argument to `list.files()`
 #' @export
-grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE) {
-  matches <- find_matches(pattern, dir, ignore_dotfiles)
+grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE,
+                  file_pattern = NULL) {
+  matches <- find_matches(pattern, dir, ignore_dotfiles,
+                          file_pattern = file_pattern)
   markers <- list()
   for (j in seq_along(matches)) {
     match <- matches[[j]]
