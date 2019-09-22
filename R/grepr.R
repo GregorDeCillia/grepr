@@ -5,7 +5,7 @@ list_file_contents <- function() {
     lapply(readLines)
 }
 
-find_matches = function(pattern) {
+find_matches <- function(pattern) {
   res <- list_file_contents() %>%
     lapply(function(file_contents) {
       matches <- regexpr(pattern, file_contents)
