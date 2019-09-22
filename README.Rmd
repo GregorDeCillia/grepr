@@ -40,3 +40,12 @@ grepr(pattern = "message") %>% as.data.frame() %>% head(3)
 ```
 
 If `grepr` is called in RStudio, the results are displayed as RStudio markers.
+
+## Arguments
+
+Argument           | Description
+-------------------|------------------------------------------------------------
+**pattern**        | a character string containing a regular expression
+**dir**            | a directory from which the search is conducted. Defaults to the working directory.
+**ignore_dotfiles**| should hidden files be searched as well? Defaults to `FALSE`
+**file_pattern**   | a regular expression which can be used to exclude certain files from the search

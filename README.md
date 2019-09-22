@@ -27,10 +27,19 @@ matches based on a regular expression.
 library(grepr)
 grepr(pattern = "message") %>% as.data.frame() %>% head(3)
 #>        file line column                                       message
-#> 1 R/grepr.R   40      9              message = readLines(file)[line],
-#> 2 R/grepr.R   50     23                       message = character(0))
-#> 3 R/grepr.R   63      5                 message("no matches to show")
+#> 1 R/grepr.R   48      9              message = readLines(file)[line],
+#> 2 R/grepr.R   58     23                       message = character(0))
+#> 3 R/grepr.R   71      5                 message("no matches to show")
 ```
 
 If `grepr` is called in RStudio, the results are displayed as RStudio
 markers.
+
+## Arguments
+
+| Argument             | Description                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| **pattern**          | a character string containing a regular expression                                 |
+| **dir**              | a directory from which the search is conducted. Defaults to the working directory. |
+| **ignore\_dotfiles** | should hidden files be searched as well? Defaults to `FALSE`                       |
+| **file\_pattern**    | a regular expression which can be used to exclude certain files from the search    |
