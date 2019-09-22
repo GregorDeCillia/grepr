@@ -11,3 +11,5 @@ RoxygenNote: 6.1.1.9000
 Imports: 
     magrittr,
     rstudioapi (>= 0.99.225)
+URL: https://github.com/GregorDeCillia/grepr
+BugReports: https://github.com/GregorDeCillia/grepr/issues
