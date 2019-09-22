@@ -4,10 +4,13 @@
 \alias{grepr}
 \title{Search for patterns in files}
 \usage{
-grepr(pattern)
+grepr(pattern, dir = ".")
 }
 \arguments{
 \item{pattern}{a character string containing a regular expression}
+
+\item{dir}{a directory from which the search is conducted. Defaults to
+the working directory.}
 }
 \description{
 Search for patterns in files
