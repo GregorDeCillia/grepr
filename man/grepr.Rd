@@ -13,11 +13,10 @@ grepr(pattern, dir = ".", ignore_dotfiles = TRUE,
 \item{dir}{a directory from which the search is conducted. Defaults to
 the working directory.}
 
-\item{ignore_dotfiles}{should hidden files be searched as well? Defaults
-to \code{FALSE}}
+\item{ignore_dotfiles}{should hidden files be ignored? Defaults to \code{TRUE}}
 
 \item{file_pattern}{a regular expression that can be used to exclude certain
-files from the search. Passed as the \code{pattern} argument to \code{list.files()}}
+files from the search. Passed as the \code{pattern} argument to \code{\link[=list.files]{list.files()}}}
 }
 \description{
 Search for patterns in files

@@ -24,10 +24,9 @@ find_matches <- function(pattern, dir, ignore_dotfiles, file_pattern) {
 #' @param pattern a character string containing a regular expression
 #' @param dir a directory from which the search is conducted. Defaults to
 #'   the working directory.
-#' @param ignore_dotfiles should hidden files be searched as well? Defaults
-#'   to `FALSE`
+#' @param ignore_dotfiles should hidden files be ignored? Defaults to `TRUE`
 #' @param file_pattern a regular expression that can be used to exclude certain
-#'   files from the search. Passed as the `pattern` argument to `list.files()`
+#'   files from the search. Passed as the `pattern` argument to [list.files()]
 #' @export
 grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE,
                   file_pattern = NULL) {

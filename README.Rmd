@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-grepr aims to provide a similar functionality as the bash command `grep`,
-but display the results as RStudio source markers
+grepr aims to provide a similar functionality as the bash command `grep`
+and display the results as RStudio source markers
 
 ## Installation
 
@@ -31,8 +31,8 @@ remotes::install_github("GregorDeCillia/grepr")
 
 ## Example
 
-This package exposes one single function called `grepr`, which finds matches
-based on a regular expression.
+The function `grepr` can be used to find matches in files based on a regular
+expression.
 
 ```{r}
 library(grepr)
@@ -47,7 +47,7 @@ Argument           | Description
 -------------------|------------------------------------------------------------
 **pattern**        | a character string containing a regular expression
 **dir**            | a directory from which the search is conducted. Defaults to the working directory.
-**ignore_dotfiles**| should hidden files be searched as well? Defaults to `FALSE`
+**ignore_dotfiles**| should hidden files be ignored? Defaults to `TRUE`
 **file_pattern**   | a regular expression which can be used to exclude certain files from the search
 
 ## Umlauts

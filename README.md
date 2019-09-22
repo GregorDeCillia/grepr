@@ -7,8 +7,8 @@
 
 <!-- badges: end -->
 
-grepr aims to provide a similar functionality as the bash command
-`grep`, but display the results as RStudio source markers
+grepr aims to provide a similar functionality as the bash command `grep`
+and display the results as RStudio source markers
 
 ## Installation
 
@@ -20,16 +20,16 @@ remotes::install_github("GregorDeCillia/grepr")
 
 ## Example
 
-This package exposes one single function called `grepr`, which finds
-matches based on a regular expression.
+The function `grepr` can be used to find matches in files based on a
+regular expression.
 
 ``` r
 library(grepr)
 grepr(pattern = "message") %>% as.data.frame() %>% head(3)
 #>               file line column
 #> 1 R/grep_umlauts.R   19     37
-#> 2 R/grep_umlauts.R   31      3
-#> 3 R/grep_umlauts.R   34      5
+#> 2 R/grep_umlauts.R   32      3
+#> 3 R/grep_umlauts.R   35      5
 #>                                                                   message
 #> 1             matches <- matches[substr(matches$message, 1, 2) != "#'", ]
 #> 2   message("the following substitutions should be used if R CMD check ",
@@ -45,7 +45,7 @@ markers.
 | -------------------- | ---------------------------------------------------------------------------------- |
 | **pattern**          | a character string containing a regular expression                                 |
 | **dir**              | a directory from which the search is conducted. Defaults to the working directory. |
-| **ignore\_dotfiles** | should hidden files be searched as well? Defaults to `FALSE`                       |
+| **ignore\_dotfiles** | should hidden files be ignored? Defaults to `TRUE`                                 |
 | **file\_pattern**    | a regular expression which can be used to exclude certain files from the search    |
 
 ## Umlauts
