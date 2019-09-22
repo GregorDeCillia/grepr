@@ -29,7 +29,9 @@ grepr <- function(pattern, dir = ".") {
   for (j in seq_along(matches)) {
     match <- matches[[j]]
     for (i in seq_along(match$row)) {
-      file <- paste0(dir, "/", names(matches)[j])
+      file <- names(matches)[j]
+      if (dir != ".")
+        file <- paste0(dir, "/", file)
       line <- match$row[i]
       marker <- data.frame(
         file = file,

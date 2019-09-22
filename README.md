@@ -25,11 +25,11 @@ matches based on a regular expression.
 
 ``` r
 library(grepr)
-grepr(pattern = "names") %>% as.data.frame() %>% head(3)
-#>          file line column                                 message
-#> 1 grepr.Rproj   21     31 PackageRoxygenize: rd,collate,namespace
-#> 2   R/grepr.R   17      3     names(res) <- dir(recursive = TRUE)
-#> 3   R/grepr.R   30     15               file <- names(matches)[j]
+grepr(pattern = "message") %>% as.data.frame() %>% head(3)
+#>        file line column                                       message
+#> 1 R/grepr.R   40      9              message = readLines(file)[line],
+#> 2 R/grepr.R   50     23                       message = character(0))
+#> 3 R/grepr.R   63      5                 message("no matches to show")
 ```
 
 If `grepr` is called in RStudio, the results are displayed as RStudio

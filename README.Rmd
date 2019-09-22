@@ -36,7 +36,7 @@ based on a regular expression.
 
 ```{r}
 library(grepr)
-grepr(pattern = "names") %>% as.data.frame() %>% head(3)
+grepr(pattern = "message") %>% as.data.frame() %>% head(3)
 ```
 
 If `grepr` is called in RStudio, the results are displayed as RStudio markers.
