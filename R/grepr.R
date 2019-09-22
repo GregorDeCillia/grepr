@@ -1,12 +1,13 @@
 globalVariables(".")
 
-list_file_contents <- function(dir) {
-  dir(path = dir, recursive = TRUE, full.names = TRUE) %>%
+list_file_contents <- function(dir, ignore_dotfiles) {
+  dir(path = dir, recursive = TRUE, full.names = TRUE,
+      all.files = !ignore_dotfiles) %>%
     lapply(readLines)
 }
 
-find_matches <- function(pattern, dir) {
-  res <- list_file_contents(dir) %>%
+find_matches <- function(pattern, dir, ignore_dotfiles) {
+  res <- list_file_contents(dir, ignore_dotfiles) %>%
     lapply(function(file_contents) {
       matches <- regexpr(pattern, file_contents)
       data.frame(
@@ -14,7 +15,7 @@ find_matches <- function(pattern, dir) {
         column = matches[matches != -1]
       )
     })
-  names(res) <- dir(recursive = TRUE, path = dir)
+  names(res) <- dir(recursive = TRUE, path = dir, all.files = !ignore_dotfiles)
   res
 }
 
@@ -22,9 +23,11 @@ find_matches <- function(pattern, dir) {
 #' @param pattern a character string containing a regular expression
 #' @param dir a directory from which the search is conducted. Defaults to
 #'   the working directory.
+#' @param ignore_dotfiles should hidden files be searched as well? Defaults
+#'   to `FALSE`
 #' @export
-grepr <- function(pattern, dir = ".") {
-  matches <- find_matches(pattern, dir)
+grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE) {
+  matches <- find_matches(pattern, dir, ignore_dotfiles)
   markers <- list()
   for (j in seq_along(matches)) {
     match <- matches[[j]]

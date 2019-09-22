@@ -4,13 +4,16 @@
 \alias{grepr}
 \title{Search for patterns in files}
 \usage{
-grepr(pattern, dir = ".")
+grepr(pattern, dir = ".", ignore_dotfiles = TRUE)
 }
 \arguments{
 \item{pattern}{a character string containing a regular expression}
 
 \item{dir}{a directory from which the search is conducted. Defaults to
 the working directory.}
+
+\item{ignore_dotfiles}{should hidden files be searched as well? Defaults
+to \code{FALSE}}
 }
 \description{
 Search for patterns in files

@@ -17,3 +17,4 @@ Imports:
     rstudioapi
 URL: https://github.com/GregorDeCillia/grepr
 BugReports: https://github.com/GregorDeCillia/grepr/issues
+Roxygen: list(markdown = TRUE)
