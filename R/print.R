@@ -64,6 +64,8 @@ escape_html <- function(text) {
 #' @importFrom knitr knit_print
 #' @export
 knit_print.grepr <- function(x, ...) {
+  if (nrow(x) == 0)
+    return(message("no matches to show"))
   x %>%
     markup_messages("**", "**", as_html = FALSE) %>%
     markup_code() %>%
