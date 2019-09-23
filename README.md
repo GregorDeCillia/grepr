@@ -30,7 +30,7 @@ grepr("message")[5:9, ]
 
 | file                   | line            | content                                                                                     |
 | :--------------------- | :-------------- | :------------------------------------------------------------------------------------------ |
-| <code>R/grepr.R</code> | <code>68</code> | <code>      **message** = character(0))</code>                                              |
+| <code>R/grepr.R</code> | <code>60</code> | <code>    **message** = readLines(file)\[line\],</code>                                     |
 | <code>R/print.R</code> | <code>5</code>  | <code>    rstudioapi::sourceMarkers(name = “grepr”, markup\_**message**s(x),</code>         |
 | <code>R/print.R</code> | <code>9</code>  | <code>    **message**(“no matches to show”)</code>                                          |
 | <code>R/print.R</code> | <code>12</code> | <code>markup\_**message**s \<- function(matches, env\_open = “\<font color=‘red’\>”,</code> |
