@@ -89,7 +89,18 @@ grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
 
 ## Known Issues
 
-* In RMarkdown documents with markdown output, square brackets (`[` and `]`)
+* in RMarkdown documents with markdown output, square brackets (`[` and `]`)
   get escaped in a way that can affect the markup of `knit_print.grepr()`:
   https://github.com/rstudio/rmarkdown/issues/667
-* Double quotes (`"`) are displayed as fancy quotes (<code>&ldquo;</code>) in column `content`
+* double quotes (`"`) are displayed as fancy quotes (<code>&ldquo;</code>) in
+  column `content`
+* currently, there is no check if RStudio is running which might lead to errors
+  in the print method in case another IDE or no IDE is used
+  
+## Possible improvements
+
+* add `grep_package()` which respects the contents of `.gitignore` and
+  `.Rbuildignore` by default
+* ignore BLOBS and other problematic file types by default
+* add `gsub_umlauts()` which applies the suggestions in
+  `print_substitution_table()` automatically
