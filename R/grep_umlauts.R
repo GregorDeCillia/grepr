@@ -25,10 +25,10 @@ drop_roxygen_matches <- function(matches) {
 #' @rdname grep_umlauts
 #' @export
 print_substitution_table <- function() {
-  umlauts = c("\u00c4", "\u00e4", "\u00d6", "\u00f6", "\u00dc", "\u00fc",
+  umlauts <- c("\u00c4", "\u00e4", "\u00d6", "\u00f6", "\u00dc", "\u00fc",
                "\u00df")
-  substitutions = c("\\u00c4", "\\u00e4", "\\u00d6", "\\u00f6", "\\u00dc",
-                    "\\u00fc", "\\u00df")
+  substitutions <- c("\\u00c4", "\\u00e4", "\\u00d6", "\\u00f6", "\\u00dc",
+                     "\\u00fc", "\\u00df")
   message("the following substitutions should be used if R CMD check ",
           "adds NOTEs because of umlauts")
   message(paste0(umlauts, ": ", substitutions, "\t", collapse = ""))
