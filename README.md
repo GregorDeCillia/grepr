@@ -28,13 +28,13 @@ library(grepr)
 grepr("message")[5:9, ]
 ```
 
-| file                   | line            | content                                                                                                          |
-| :--------------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------- |
-| <code>R/grepr.R</code> | <code>67</code> | <code> <font color='red'>message</font> = character(0))</code>                                                   |
-| <code>R/print.R</code> | <code>5</code>  | <code> rstudioapi::sourceMarkers(name = “grepr”, markup\_<font color='red'>message</font>s(x),</code>            |
-| <code>R/print.R</code> | <code>9</code>  | <code> <font color='red'>message</font>(“no matches to show”)</code>                                             |
-| <code>R/print.R</code> | <code>12</code> | <code>markup\_<font color='red'>message</font>s \<- function(matches, env\_open = “\<font color=‘red’\>”,</code> |
-| <code>R/print.R</code> | <code>20</code> | <code> <font color='red'>message</font> \<- match$message</code>                                                 |
+| file                   | line            | content                                                                                     |
+| :--------------------- | :-------------- | :------------------------------------------------------------------------------------------ |
+| <code>R/grepr.R</code> | <code>67</code> | <code> **message** = character(0))</code>                                                   |
+| <code>R/print.R</code> | <code>5</code>  | <code> rstudioapi::sourceMarkers(name = “grepr”, markup\_**message**s(x),</code>            |
+| <code>R/print.R</code> | <code>9</code>  | <code> **message**(“no matches to show”)</code>                                             |
+| <code>R/print.R</code> | <code>12</code> | <code>markup\_**message**s \<- function(matches, env\_open = “\<font color=‘red’\>”,</code> |
+| <code>R/print.R</code> | <code>20</code> | <code> **message** \<- match$message</code>                                                 |
 
 If `grepr` is called in RStudio, the results are displayed as [RStudio
 source
@@ -62,15 +62,15 @@ Supported symbols:
 grep_umlauts(file_pattern = "README\\.Rmd")
 ```
 
-| file                    | line            | content                                                          |
-| :---------------------- | :-------------- | :--------------------------------------------------------------- |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: <font color='red'>Ö</font>ÄÜöäüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö<font color='red'>Ä</font>Üöäüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄ<font color='red'>Ü</font>öäüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜ<font color='red'>ö</font>äüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜö<font color='red'>ä</font>üß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöä<font color='red'>ü</font>ß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöäü<font color='red'>ß</font></code> |
+| file                    | line            | content                                     |
+| :---------------------- | :-------------- | :------------------------------------------ |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: **Ö**ÄÜöäüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö**Ä**Üöäüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄ**Ü**öäüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜ**ö**äüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜö**ä**üß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöä**ü**ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöäü**ß**</code> |
 
 The function `print_substitution_table()` can be used to suggest
 alternatives

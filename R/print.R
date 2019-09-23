@@ -65,7 +65,7 @@ escape_html <- function(text) {
 #' @export
 knit_print.grepr <- function(x, ...) {
   x %>%
-    markup_messages(as_html = FALSE) %>%
+    markup_messages("**", "**", as_html = FALSE) %>%
     markup_code() %>%
     drop_columns() %>%
     render_kable()
