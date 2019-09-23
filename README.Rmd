@@ -70,7 +70,7 @@ The function `print_substitution_table()` can be used to suggest alternatives
 print_substitution_table()
 ```
 
-## Exports
+## Class methods
 
 Calls to `grepr::grepr()` create objects of the class `grepr`. Those objects
 can be used in the following ways.

@@ -81,7 +81,7 @@ print_substitution_table()
 #> Ä: \u00c4    ä: \u00e4   Ö: \u00d6   ö: \u00f6   Ü: \u00dc   ü: \u00fc   ß: \u00df   
 ```
 
-## Exports
+## Class methods
 
 Calls to `grepr::grepr()` create objects of the class `grepr`. Those
 objects can be used in the following ways.
