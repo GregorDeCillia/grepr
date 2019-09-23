@@ -114,5 +114,5 @@ grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
     and `]`) get escaped in a way that can affect the markup of
     `knit_print.grepr()`:
     <https://github.com/rstudio/rmarkdown/issues/667>
-  - The markup in `knit_print.grepr()` only works for HTML-based output
-    formats.
+  - Double quotes (`"`) are displayed as fancy quotes (<code>“</code>)
+    in column `content`
