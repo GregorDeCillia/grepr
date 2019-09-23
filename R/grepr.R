@@ -62,9 +62,10 @@ grepr <- function(pattern, dir = ".", ignore_dotfiles = TRUE,
   }
   res <- do.call(rbind, markers)
   if (is.null(res))
-    res <- data.frame(file = character(0), line = integer(0),
-                      column = integer(0), type = character(0),
-                      message = character(0))
+    res <- data.frame(
+      file = character(0), line = integer(0),
+      column = integer(0), type = character(0),
+      message = character(0))
   class(res) <- c("grepr", "data.frame")
   attr(res, "dir") <- dir
   res
