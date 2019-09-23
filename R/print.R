@@ -55,7 +55,7 @@ render_kable <- function(matches) {
 }
 
 escape_html <- function(text) {
-  specials <- list(`&` = '&amp;', `<` = '&lt;', `>` = '&gt;')
+  specials <- list(`&` = '&amp;', `<` = '&lt;', `>` = '&gt;', " " = "&nbsp;")
   for (chr in names(specials))
     text <- gsub(chr, specials[[chr]], text, fixed = TRUE, useBytes = TRUE)
   text

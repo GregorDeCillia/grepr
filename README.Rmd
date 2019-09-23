@@ -58,7 +58,7 @@ Argument           | Description
 `pattern` argument. It can be used with a flag `ignore_roxygen` to skip Rd
 Files and roxygen comments.
 
-Supported symbols: ÖÄÜöäüß
+Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
 
 ```{r}
 grep_umlauts(file_pattern = "README\\.Rmd")

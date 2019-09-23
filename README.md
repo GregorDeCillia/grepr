@@ -30,11 +30,11 @@ grepr("message")[5:9, ]
 
 | file                   | line            | content                                                                                     |
 | :--------------------- | :-------------- | :------------------------------------------------------------------------------------------ |
-| <code>R/grepr.R</code> | <code>67</code> | <code> **message** = character(0))</code>                                                   |
-| <code>R/print.R</code> | <code>5</code>  | <code> rstudioapi::sourceMarkers(name = “grepr”, markup\_**message**s(x),</code>            |
-| <code>R/print.R</code> | <code>9</code>  | <code> **message**(“no matches to show”)</code>                                             |
-| <code>R/print.R</code> | <code>12</code> | <code>markup\_**message**s \<- function(matches, env\_open = “\<font color=‘red’\>”,</code> |
-| <code>R/print.R</code> | <code>20</code> | <code> **message** \<- match$message</code>                                                 |
+| <code>R/grepr.R</code> | <code>67</code> | <code>                      **message** = character(0))</code>                              |
+| <code>R/print.R</code> | <code>5</code>  | <code>    rstudioapi::sourceMarkers(name = “grepr”, markup\_**message**s(x),</code>         |
+| <code>R/print.R</code> | <code>9</code>  | <code>    **message**(“no matches to show”)</code>                                          |
+| <code>R/print.R</code> | <code>12</code> | <code>markup\_**message**s \<- function(matches, env\_open = “\<font color=‘red’\>”,</code> |
+| <code>R/print.R</code> | <code>20</code> | <code>    **message** \<- match$message</code>                                              |
 
 If `grepr` is called in RStudio, the results are displayed as [RStudio
 source
@@ -55,22 +55,22 @@ markers](https://rstudio.github.io/rstudioapi/reference/sourceMarkers.html).
 the `pattern` argument. It can be used with a flag `ignore_roxygen` to
 skip Rd Files and roxygen comments.
 
-Supported symbols:
-ÖÄÜöäüß
+Supported symbols: Ö, Ä, Ü, ö, ä, ü,
+ß
 
 ``` r
 grep_umlauts(file_pattern = "README\\.Rmd")
 ```
 
-| file                    | line            | content                                     |
-| :---------------------- | :-------------- | :------------------------------------------ |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: **Ö**ÄÜöäüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö**Ä**Üöäüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄ**Ü**öäüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜ**ö**äüß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜö**ä**üß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöä**ü**ß</code> |
-| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöäü**ß**</code> |
+| file                    | line            | content                                                 |
+| :---------------------- | :-------------- | :------------------------------------------------------ |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: **Ö**, Ä, Ü, ö, ä, ü, ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö, **Ä**, Ü, ö, ä, ü, ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö, Ä, **Ü**, ö, ä, ü, ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö, Ä, Ü, **ö**, ä, ü, ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö, Ä, Ü, ö, **ä**, ü, ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö, Ä, Ü, ö, ä, **ü**, ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö, Ä, Ü, ö, ä, ü, **ß**</code> |
 
 The function `print_substitution_table()` can be used to suggest
 alternatives
@@ -98,14 +98,14 @@ objects can be used in the following ways.
 
 ``` r
 grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
-#>         file line column length                    message
-#> 1 README.Rmd   61     20      1 Supported symbols: ÖÄÜöäüß
-#> 2 README.Rmd   61     21      1 Supported symbols: ÖÄÜöäüß
-#> 3 README.Rmd   61     22      1 Supported symbols: ÖÄÜöäüß
-#> 4 README.Rmd   61     23      1 Supported symbols: ÖÄÜöäüß
-#> 5 README.Rmd   61     24      1 Supported symbols: ÖÄÜöäüß
-#> 6 README.Rmd   61     25      1 Supported symbols: ÖÄÜöäüß
-#> 7 README.Rmd   61     26      1 Supported symbols: ÖÄÜöäüß
+#>         file line column length                                message
+#> 1 README.Rmd   61     20      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
+#> 2 README.Rmd   61     23      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
+#> 3 README.Rmd   61     26      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
+#> 4 README.Rmd   61     29      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
+#> 5 README.Rmd   61     32      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
+#> 6 README.Rmd   61     35      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
+#> 7 README.Rmd   61     38      1 Supported symbols: Ö, Ä, Ü, ö, ä, ü, ß
 ```
 
 ## Known Issues
