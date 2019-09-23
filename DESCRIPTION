@@ -14,7 +14,8 @@ LazyData: true
 RoxygenNote: 6.1.1.9000
 Imports: 
     magrittr,
-    rstudioapi
+    rstudioapi,
+    knitr
 URL: https://github.com/GregorDeCillia/grepr
 BugReports: https://github.com/GregorDeCillia/grepr/issues
 Roxygen: list(markdown = TRUE)

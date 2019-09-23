@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  cache = FALSE
 )
 ```
 
@@ -36,10 +37,11 @@ expression.
 
 ```{r}
 library(grepr)
-grepr(pattern = "message") %>% as.data.frame() %>% head(3)
+grepr("message")[5:9, ]
 ```
 
-If `grepr` is called in RStudio, the results are displayed as RStudio markers.
+If `grepr` is called in RStudio, the results are displayed as
+[RStudio source markers](https://rstudio.github.io/rstudioapi/reference/sourceMarkers.html).
 
 ## Arguments
 
@@ -56,10 +58,10 @@ Argument           | Description
 `pattern` argument. It can be used with a flag `ignore_roxygen` to skip Rd
 Files and roxygen comments.
 
-Supported symbols: ÖÄÜöäü
+Supported symbols: ÖÄÜöäüß
 
 ```{r}
-grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
+grep_umlauts(file_pattern = "README\\.Rmd")
 ```
 
 The function `print_substitution_table()` can be used to suggest alternatives
@@ -68,3 +70,26 @@ The function `print_substitution_table()` can be used to suggest alternatives
 print_substitution_table()
 ```
 
+## Exports
+
+Calls to `grepr::grepr()` create objects of the class `grepr`. Those objects
+can be used in the following ways.
+
+* printing an object in an interactive console will display the matches with
+  `rstudioapi::sourceMarkers()`
+* printing an object in a RMarkdown file will render the matches with
+  `knitr::kable()`
+* the generic `as.data.frame()` converts the matches into a tidy `data.frame`
+  that contains filenames, row numbers, colum numbers and lengths of the
+  matches.
+  
+```{r}
+grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
+```
+
+## Known Issues
+
+* In RMarkdown documents with markdown output, square brackets (`[` and `]`)
+  get escaped in a way that can affect the markup of `knit_print.grepr()`:
+  https://github.com/rstudio/rmarkdown/issues/667
+* The markup in `knit_print.grepr()` only works for HTML-based output formats.

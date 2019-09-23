@@ -25,19 +25,20 @@ regular expression.
 
 ``` r
 library(grepr)
-grepr(pattern = "message") %>% as.data.frame() %>% head(3)
-#>               file line column
-#> 1 R/grep_umlauts.R   19     37
-#> 2 R/grep_umlauts.R   32      3
-#> 3 R/grep_umlauts.R   35      5
-#>                                                                   message
-#> 1             matches <- matches[substr(matches$message, 1, 2) != "#'", ]
-#> 2   message("the following substitutions should be used if R CMD check ",
-#> 3                      message(umlauts[i], ": ", substitutions[i], "\\t")
+grepr("message")[5:9, ]
 ```
 
-If `grepr` is called in RStudio, the results are displayed as RStudio
-markers.
+| file                   | line            | content                                                                                                          |
+| :--------------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------- |
+| <code>R/grepr.R</code> | <code>67</code> | <code> <font color='red'>message</font> = character(0))</code>                                                   |
+| <code>R/print.R</code> | <code>5</code>  | <code> rstudioapi::sourceMarkers(name = “grepr”, markup\_<font color='red'>message</font>s(x),</code>            |
+| <code>R/print.R</code> | <code>9</code>  | <code> <font color='red'>message</font>(“no matches to show”)</code>                                             |
+| <code>R/print.R</code> | <code>12</code> | <code>markup\_<font color='red'>message</font>s \<- function(matches, env\_open = “\<font color=‘red’\>”,</code> |
+| <code>R/print.R</code> | <code>20</code> | <code> <font color='red'>message</font> \<- match$message</code>                                                 |
+
+If `grepr` is called in RStudio, the results are displayed as [RStudio
+source
+markers](https://rstudio.github.io/rstudioapi/reference/sourceMarkers.html).
 
 ## Arguments
 
@@ -54,13 +55,22 @@ markers.
 the `pattern` argument. It can be used with a flag `ignore_roxygen` to
 skip Rd Files and roxygen comments.
 
-Supported symbols: ÖÄÜöäü
+Supported symbols:
+ÖÄÜöäüß
 
 ``` r
-grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
-#>         file line column                   message
-#> 1 README.Rmd   59     20 Supported symbols: ÖÄÜöäü
+grep_umlauts(file_pattern = "README\\.Rmd")
 ```
+
+| file                    | line            | content                                                          |
+| :---------------------- | :-------------- | :--------------------------------------------------------------- |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: <font color='red'>Ö</font>ÄÜöäüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: Ö<font color='red'>Ä</font>Üöäüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄ<font color='red'>Ü</font>öäüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜ<font color='red'>ö</font>äüß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜö<font color='red'>ä</font>üß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöä<font color='red'>ü</font>ß</code> |
+| <code>README.Rmd</code> | <code>61</code> | <code>Supported symbols: ÖÄÜöäü<font color='red'>ß</font></code> |
 
 The function `print_substitution_table()` can be used to suggest
 alternatives
@@ -68,11 +78,41 @@ alternatives
 ``` r
 print_substitution_table()
 #> the following substitutions should be used if R CMD check adds NOTEs because of umlauts
-#> Ä: \u00c4    
-#> ä: \u00e4    
-#> Ö: \u00d6    
-#> ö: \u00f6    
-#> Ü: \u00dc    
-#> ü: \u00fc    
-#> ß: \u00df    
+#> Ä: \u00c4    ä: \u00e4   Ö: \u00d6   ö: \u00f6   Ü: \u00dc   ü: \u00fc   ß: \u00df   
 ```
+
+## Exports
+
+Calls to `grepr::grepr()` create objects of the class `grepr`. Those
+objects can be used in the following ways.
+
+  - printing an object in an interactive console will display the
+    matches with `rstudioapi::sourceMarkers()`
+  - printing an object in a RMarkdown file will render the matches with
+    `knitr::kable()`
+  - the generic `as.data.frame()` converts the matches into a tidy
+    `data.frame` that contains filenames, row numbers, colum numbers and
+    lengths of the matches.
+
+<!-- end list -->
+
+``` r
+grep_umlauts(file_pattern = "README\\.Rmd") %>% as.data.frame()
+#>         file line column length                    message
+#> 1 README.Rmd   61     20      1 Supported symbols: ÖÄÜöäüß
+#> 2 README.Rmd   61     21      1 Supported symbols: ÖÄÜöäüß
+#> 3 README.Rmd   61     22      1 Supported symbols: ÖÄÜöäüß
+#> 4 README.Rmd   61     23      1 Supported symbols: ÖÄÜöäüß
+#> 5 README.Rmd   61     24      1 Supported symbols: ÖÄÜöäüß
+#> 6 README.Rmd   61     25      1 Supported symbols: ÖÄÜöäüß
+#> 7 README.Rmd   61     26      1 Supported symbols: ÖÄÜöäüß
+```
+
+## Known Issues
+
+  - In RMarkdown documents with markdown output, square brackets (`[`
+    and `]`) get escaped in a way that can affect the markup of
+    `knit_print.grepr()`:
+    <https://github.com/rstudio/rmarkdown/issues/667>
+  - The markup in `knit_print.grepr()` only works for HTML-based output
+    formats.
